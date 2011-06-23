@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+//http://hi.baidu.com/hbzha/blog/item/4c734f6f7b5853c280cb4a38.html
 package com.fanfq.btchat;
 
 
@@ -85,7 +85,7 @@ public class BluetoothChat extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if(D) Log.e(TAG, "+++ ON CREATE +++");
-
+        
         // Set up the window layout
         requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);
         setContentView(R.layout.main);
@@ -144,9 +144,11 @@ public class BluetoothChat extends Activity {
         Log.d(TAG, "setupChat()");
 
         // Initialize the array adapter for the conversation thread
-        mConversationArrayAdapter = new ArrayAdapter<String>(this, R.layout.message);
+        String[] data ={"Android", "Google", "Eclipse"};
+        mConversationArrayAdapter = new ArrayAdapter<String>(this, R.layout.message,data);
         mConversationView = (ListView) findViewById(R.id.in);
         mConversationView.setAdapter(mConversationArrayAdapter);
+        mConversationView.setDividerHeight(0);
 
         // Initialize the compose field with a listener for the return key
         mOutEditText = (EditText) findViewById(R.id.edit_text_out);
