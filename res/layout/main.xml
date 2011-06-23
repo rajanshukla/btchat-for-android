@@ -16,31 +16,39 @@
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#ffffff"
     >
     <ListView android:id="@+id/in"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
         android:stackFromBottom="true"
         android:transcriptMode="alwaysScroll"
         android:layout_weight="1"
     />
     <LinearLayout
         android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:layout_height="60dip"
+        android:layout_gravity="bottom"
+        android:gravity="center_vertical"
+        android:padding="5dip"
+        android:background="@drawable/progressbar1"
         >
         <EditText android:id="@+id/edit_text_out"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="fill_parent"
             android:layout_weight="1"
-            android:layout_gravity="bottom"
         />
         <Button android:id="@+id/button_send"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/send"
+            android:layout_height="fill_parent"
+            android:text="发送"
+            android:textSize="18dip"
+            android:textColor="#ffffff"
+            android:layout_marginLeft="5dip"
+            android:background="@drawable/send_menu"
         />
     </LinearLayout>
 </LinearLayout>
