@@ -22,4 +22,5 @@
     android:paddingTop="5dip"
     android:paddingBottom="5dip"
     android:paddingRight="5dip"
+    android:id="@+id/msg"
 />

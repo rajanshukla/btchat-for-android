@@ -26,6 +26,7 @@
         android:stackFromBottom="true"
         android:transcriptMode="alwaysScroll"
         android:layout_weight="1"
+        android:cacheColorHint="#00000000"
     />
     <LinearLayout
         android:orientation="horizontal"
