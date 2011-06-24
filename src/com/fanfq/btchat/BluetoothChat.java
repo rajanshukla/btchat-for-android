@@ -144,8 +144,8 @@ public class BluetoothChat extends Activity {
         Log.d(TAG, "setupChat()");
 
         // Initialize the array adapter for the conversation thread
-        String[] data ={"Android", "Google", "Eclipse"};
-        mConversationArrayAdapter = new ArrayAdapter<String>(this, R.layout.message,data);
+        //String[] data ={"Android", "Google", "Eclipse", "Google", "Eclipse", "Google", "Eclipse", "Google", "Eclipse", "Google", "Eclipse", "Google", "Eclipse", "Google", "Eclipse", "Google", "Eclipse"};
+        mConversationArrayAdapter = new ArrayAdapter<String>(this, R.layout.message);//,data);
         mConversationView = (ListView) findViewById(R.id.in);
         mConversationView.setAdapter(mConversationArrayAdapter);
         mConversationView.setDividerHeight(0);
