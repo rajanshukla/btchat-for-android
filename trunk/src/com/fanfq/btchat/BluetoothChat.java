@@ -17,6 +17,11 @@
 package com.fanfq.btchat;
 
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
@@ -139,16 +144,56 @@ public class BluetoothChat extends Activity {
             }
         }
     }
+    
+    private static List<HashMap<String,String>> listItem = new ArrayList<HashMap<String,String>>();
+    private static HashMap<String,String> map;
+    private static int[] types = new int[0];
+    
+    private void display(String msg,int type){
+    	map = new HashMap<String,String>();
+    	map.put("data", msg);
+    	listItem.add(map);
+    	int[] tmp = types;
+    	int len = types.length;
+    	types = new int[len+1];
+    	int i;
+    	for(i = 0;i<len;i++){
+    		types[i] = tmp[i];
+    	}
+    	types[i] = type;
+    	MyArrayAdpater listItemAdapter= new MyArrayAdpater(this, listItem,types);  
+//    	System.out.println("000000000000"+listItemAdapter);
+//      mConversationView.setAdapter(mConversationArrayAdapter);
+    	mConversationView.setAdapter(listItemAdapter);
+		mConversationView.setDividerHeight(0);
+    }
+    
+    private void clear(){
+    	listItem = new ArrayList<HashMap<String,String>>();
+    	HashMap<String,String> map;
+    	types = new int[0];
+    }
 
     private void setupChat() {
         Log.d(TAG, "setupChat()");
 
-        // Initialize the array adapter for the conversation thread
-        //String[] data ={"Android", "Google", "Eclipse", "Google", "Eclipse", "Google", "Eclipse", "Google", "Eclipse", "Google", "Eclipse", "Google", "Eclipse", "Google", "Eclipse", "Google", "Eclipse"};
-        mConversationArrayAdapter = new ArrayAdapter<String>(this, R.layout.message);//,data);
+//        // Initialize the array adapter for the conversation thread
+//        String[] data ={"Android", "Google", "Eclipse"};
+////        mConversationArrayAdapter = new ArrayAdapter<String>(this, R.layout.message);//,data);
         mConversationView = (ListView) findViewById(R.id.in);
-        mConversationView.setAdapter(mConversationArrayAdapter);
-        mConversationView.setDividerHeight(0);
+//        ArrayList<HashMap<String, String>> listItem = new ArrayList<HashMap<String, String>>();  
+//        int[] type = {1,0,1};
+//        int size = data.length;
+//        for(int i=0;i<size;i++){
+//        	HashMap<String, String> map = new HashMap<String, String>();  
+//        	//根据不同需求可以构造更复杂的数据,目前之构造一个数据  
+//        	map.put("data", data[i]);  
+//        	listItem.add(map);  
+//        }
+//        MyArrayAdpater listItemAdapter= new MyArrayAdpater(this, listItem,type);  
+////        mConversationView.setAdapter(mConversationArrayAdapter);
+//        mConversationView.setAdapter(listItemAdapter);
+//        mConversationView.setDividerHeight(0);
 
         // Initialize the compose field with a listener for the return key
         mOutEditText = (EditText) findViewById(R.id.edit_text_out);
@@ -250,7 +295,7 @@ public class BluetoothChat extends Activity {
                 case BluetoothChatService.STATE_CONNECTED:
                     mTitle.setText(R.string.title_connected_to);
                     mTitle.append(mConnectedDeviceName);
-                    mConversationArrayAdapter.clear();
+                    clear();
                     break;
                 case BluetoothChatService.STATE_CONNECTING:
                     mTitle.setText(R.string.title_connecting);
@@ -265,13 +310,13 @@ public class BluetoothChat extends Activity {
                 byte[] writeBuf = (byte[]) msg.obj;
                 // construct a string from the buffer
                 String writeMessage = new String(writeBuf);
-                mConversationArrayAdapter.add("Me:  " + writeMessage);
+                display("Me:  " + writeMessage,0);
                 break;
             case MESSAGE_READ:
                 byte[] readBuf = (byte[]) msg.obj;
                 // construct a string from the valid bytes in the buffer
                 String readMessage = new String(readBuf, 0, msg.arg1);
-                mConversationArrayAdapter.add(mConnectedDeviceName+":  " + readMessage);
+                display(mConnectedDeviceName+":  " + readMessage,1);
                 break;
             case MESSAGE_DEVICE_NAME:
                 // save the connected device's name
