@@ -20,7 +20,9 @@ package com.fanfq.btchat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+
+import com.google.ads.AdRequest;
+import com.google.ads.AdView;
 
 import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
@@ -73,6 +75,8 @@ public class BluetoothChat extends Activity {
     private ListView mConversationView;
     private EditText mOutEditText;
     private Button mSendButton;
+    
+    
 
     // Name of the connected device
     private String mConnectedDeviceName = null;
@@ -100,7 +104,11 @@ public class BluetoothChat extends Activity {
         mTitle = (TextView) findViewById(R.id.title_left_text);
         mTitle.setText(R.string.app_name);
         mTitle = (TextView) findViewById(R.id.title_right_text);
-
+        
+        // Look up the AdView as a resource and load a request.
+		AdView adView = (AdView)this.findViewById(R.id.adView);
+		adView.loadAd(new AdRequest());
+		
         // Get local Bluetooth adapter
         mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
 
@@ -126,6 +134,8 @@ public class BluetoothChat extends Activity {
         } else {
             if (mChatService == null) setupChat();
         }
+        
+		
     }
 
     @Override
@@ -172,6 +182,9 @@ public class BluetoothChat extends Activity {
     	listItem = new ArrayList<HashMap<String,String>>();
     	HashMap<String,String> map;
     	types = new int[0];
+    	MyArrayAdpater listItemAdapter= new MyArrayAdpater(this, listItem,types); 
+    	mConversationView.setAdapter(listItemAdapter);
+		mConversationView.setDividerHeight(0);
     }
 
     private void setupChat() {
