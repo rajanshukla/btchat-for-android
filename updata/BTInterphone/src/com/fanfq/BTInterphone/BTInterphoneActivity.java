@@ -20,6 +20,7 @@ import android.view.View.OnLongClickListener;
 import android.view.Window;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -44,8 +45,10 @@ public class BTInterphoneActivity extends Activity {
 	
 	private final boolean D = true;
 	private final String TAG = "BTInterphoneActivity";
-	private Button chosebtn;
-	private Button speakbtn;
+	private Button choseBtn;
+	private Button speakBtn;
+	private EditText msgEditText;
+	private Button msgSendBtn;
 	private Button choseSpeakBtn;
 	private Button choseMsgBtn;
 	private Button choseSmilyBtn;
@@ -69,19 +72,19 @@ public class BTInterphoneActivity extends Activity {
 		if (isSDCardExit)
 			iRecAudioDir = Environment.getExternalStorageDirectory();
         
-        speakbtn = (Button) findViewById(R.id.speakbtn);
-        speakbtn.setFocusable(true);
-        speakbtn.setOnTouchListener(new View.OnTouchListener() {
+        speakBtn = (Button) findViewById(R.id.speakBtn);
+        speakBtn.setFocusable(true);
+        speakBtn.setOnTouchListener(new View.OnTouchListener() {
 			
 			@Override
 			public boolean onTouch(View v, MotionEvent event) {
 				if(event.getAction() == event.ACTION_DOWN){
-					speakbtn.setText("松开结束");
+					speakBtn.setText("松开结束");
 					System.out.println("松开结束");
 					
 				}
 				if(event.getAction() == event.ACTION_UP){
-					speakbtn.setText("按住对讲");
+					speakBtn.setText("按住对讲");
 
 				}	
 				
@@ -89,8 +92,11 @@ public class BTInterphoneActivity extends Activity {
 			}
 		});
         
-        chosebtn = (Button) findViewById(R.id.chosebtn);
-        chosebtn.setOnClickListener(new View.OnClickListener() {
+        msgEditText = (EditText) findViewById(R.id.msgEditText);
+        msgSendBtn = (Button) findViewById(R.id.msgSendBtn);
+        
+        choseBtn = (Button) findViewById(R.id.choseBtn);
+        choseBtn.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
@@ -127,6 +133,10 @@ public class BTInterphoneActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				System.out.println("speak");
+				msgEditText.setVisibility(View.GONE);
+				msgSendBtn.setVisibility(View.GONE);
+				speakBtn.setVisibility(View.VISIBLE);
+				pop.dismiss();
 			}
 		});
         
@@ -135,6 +145,9 @@ public class BTInterphoneActivity extends Activity {
 			
 			@Override
 			public void onClick(View v) {
+				msgEditText.setVisibility(View.VISIBLE);
+				msgSendBtn.setVisibility(View.VISIBLE);
+				speakBtn.setVisibility(View.GONE);
 				pop.dismiss();
 			}
 		});
