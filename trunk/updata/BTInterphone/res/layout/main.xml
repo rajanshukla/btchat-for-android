@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/bg"
+    >
+    
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="30dip"
+        android:background="@drawable/title"
+        >
+        <TextView android:id="@+id/edit_11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+			android:textStyle="bold"
+            android:text="zzzz"
+            android:layout_weight="1"    
+            android:layout_margin="5dip"          
+            android:gravity="left"
+        />
+        <TextView android:id="@+id/button_222"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="中国"
+            android:textColor="#ffffff"     
+            android:textStyle="bold"
+            android:layout_weight="1" 
+            android:layout_margin="5dip"           
+            android:gravity="right"
+        />
+    </LinearLayout>
+    
+	<ListView android:id="@+id/in"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:stackFromBottom="true"
+        android:transcriptMode="alwaysScroll"
+        android:layout_weight="1"
+        android:cacheColorHint="#00000000"
+    />
+    
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="60dip"
+        android:layout_gravity="bottom"
+        android:gravity="center_vertical"
+        android:padding="5dip"
+        android:background="@drawable/bottom"
+        >
+        <Button android:id="@+id/chosebtn"
+            android:layout_width="40dip"
+            android:layout_height="40dip"
+            android:background="@drawable/function_btn"
+        />
+        <Button android:id="@+id/speakbtn"
+        	android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="40dip"
+            android:text="按住对讲"
+            android:textColor="#ffffff"
+            android:background="@drawable/voice_btn"
+            android:layout_marginLeft="5dip"
+        />
+    </LinearLayout>
+</LinearLayout>
