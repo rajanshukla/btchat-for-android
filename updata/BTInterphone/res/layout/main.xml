@@ -51,12 +51,12 @@
         android:padding="5dip"
         android:background="@drawable/bottom"
         >
-        <Button android:id="@+id/chosebtn"
+        <Button android:id="@+id/choseBtn"
             android:layout_width="40dip"
             android:layout_height="40dip"
             android:background="@drawable/function_btn"
         />
-        <Button android:id="@+id/speakbtn"
+        <Button android:id="@+id/speakBtn"
         	android:layout_weight="1"
             android:layout_width="wrap_content"
             android:layout_height="40dip"
@@ -65,5 +65,28 @@
             android:background="@drawable/voice_btn"
             android:layout_marginLeft="5dip"
         />
+        
+        <EditText
+        	android:id="@+id/msgEditText"
+        	android:layout_weight="1"
+        	android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="40dip"
+            android:text="按住对讲"
+            android:textColor="#ffffff"
+            android:layout_marginLeft="5dip"
+        />
+        <Button 
+        	android:id="@+id/msgSendBtn"
+        	android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="40dip"
+            android:text="Send"
+            android:textColor="#ffffff"
+            android:background="@drawable/voice_btn"
+            android:layout_marginLeft="5dip"
+        />
+        
+        
     </LinearLayout>
 </LinearLayout>
